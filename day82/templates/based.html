@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" type="text/css" href="/static/style.css">
+		{% block favicon %}<link rel="icon" href="/static/woman-shrugging.png">{% endblock %}
+	</head>
+	<body>
+      <nav id="navbar">
+		  {% block navbar %}
+          <a href="{{url_for('home')}}">Home</a>
+          <a href="{{url_for('productions_page')}}">Productions</a>
+          <a href="{{url_for('help_page')}}">Help and Info</a>
+          <a href="{{url_for('about_page')}}">About and Contact</a>
+          {% endblock %}
+      </nav>
+
+      <div id="main-content">
+          {% block content %}<h1>hello</h1>{% endblock %} 
+      </div>
+
+      <footer id="main-footer">
+		  {% block footer %}
+          <p>Some productions {{rn.year}} &#183; <a href="{{url_for('privacy_page')}}">Privacy</a> &#183; Designed by <a href="https://github.com/chartb-tw">chartb</a> </p>
+          {% endblock %}
+      </footer>
+	</body>
+</html>

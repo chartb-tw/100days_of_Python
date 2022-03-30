@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<html>
+
+	{% extends "based.html" %}
+	{% block title %}Home page{% endblock %} 
+	{% block favicon %}<link rel="icon" href="/static/emojis-favicons/woman-raising-hand.png">{% endblock %}
+	{% block content %}
+      <section id="">
+        <h3>The home page</h3>
+          <p>Welcome to my site - I can fill this in with content If there are any enquiries, I <a href="{{url_for('about_page')}}">can be contacted</a> in the meantime.</p>
+      </section>
+  	{% endblock %}
+
+</html>

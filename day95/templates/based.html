@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" type="text/css" href="/static/style.css">
+		<link rel="icon" href="/static/steam_locomotive.png">
+	</head>
+	<body>
+      <nav id="navbar">
+		  {% block navbar %}
+          <a href="{{url_for('home')}}">Home</a>
+          {% endblock %}
+      </nav>
+
+      <div id="main-content">
+          {% block content %}<h1>hello</h1>{% endblock %} 
+      </div>
+
+      <footer id="main-footer">
+		  {% block footer %}
+          <p>chartb productions {{rn.year}} &#183; Demonstration purposes</p>
+          {% endblock %}
+      </footer>
+	</body>
+</html>

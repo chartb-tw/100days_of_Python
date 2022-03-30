@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	{% extends "based.html" %}
+	{% block title %}Departures for {{station_name}}{% endblock %}
+	{% block content %}
+		<h1>Services at {{station_name}}</h1>
+		<p>These services were searched for at around {{rn.strftime("%H:%M:%S")}}.</p>
+		{% if services: %}
+		<h3>Trains found:</h3>
+		<table>
+			<thead>
+				<tr>
+					<th>Reporting number</th>
+					<th>Origin</th>
+					<th>Destination</th>
+					<th>Arrival time <br/> (at {{station_name}})</th>
+					<th>Departure time <br/> (from {{station_name}})</th>
+					<th>Operator</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for train in services: %}
+				<tr>
+					<td style="text-align:center;">{{train.runningIdentity}}</td>
+					<td style="text-align:center;">{{train.locationDetail.origin[0].description}}</td>
+					<td style="text-align:center;">{{train.locationDetail.destination[0].description}}</td>
+					<td style="text-align:center;">{{train.locationDetail.gbttBookedArrival}}</td>
+					<td style="text-align:center;">{{train.locationDetail.gbttBookedDeparture}}</td>
+					<td style="text-align:center;">{{train.atocName}} ({{train.atocCode}})</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else: %}
+			<p>No services have been found!</p>
+		{% endif %}
+	{% endblock %}
+</html>

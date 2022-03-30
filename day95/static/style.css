@@ -1,0 +1,101 @@
+body{
+  background-color:lightblue;
+  color:#555555;
+  font-family:Arial,Helvetica, sans-serif;
+  font-size:16px;
+  line-height:1.6em;
+  margin:0;
+}
+
+section{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+a{
+  text-decoration:none;
+  color:blue
+}
+
+a:hover{
+  color:red;
+}
+
+a:active{
+  color:green;
+}
+
+a:visited{
+  color:purple;
+}
+
+/* 
+The site basic design is broken into the navbar, the content, and the footbar.
+These are ids and should appear on each page
+*/
+
+#navbar{
+  overflow: hidden;
+  background-color: #b70cf5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 10px;
+}
+
+#navbar a:hover{
+  background-color: purple;
+}
+
+#navbar a{
+  float: left;
+  display: block;
+  color: #eeeeee;
+  text-align: center;
+  padding: 15px 18px;
+  text-decoration: none;
+  font-size: 18px;
+}
+#main-content{
+  padding: 60px 10px;
+}
+
+#main-footer{
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #b70cf5;
+  padding: 0 10px;
+  color: white;
+  text-align: center;
+}
+
+#main-footer a:visited{
+  color:silver;
+}
+
+
+/* add more styles here */
+
+table, th, td {
+  border:0.5px solid black;
+}
+
+.button {
+  background-color:#333333;
+  color:white;
+  padding:10px 15px;
+  border:none;
+}
+
+.button:hover{
+  background:red;
+  color:#ffffff
+}
+
+.clr{
+  clear:both;
+}

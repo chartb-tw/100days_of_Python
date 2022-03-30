@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+	{% extends "based.html" %}
+	{% block title %}404 page :({% endblock %}
+	{% block favicon %}<link rel="icon" href="/static/emojis-favicons/woman-facepalming.png">{% endblock %}
+	{% block content %}
+		<section>
+      	<h4>Oof - a 404 page!</h4>
+          <p>The page you requested, unless it was this one, does not exist anymore (if it ever did to begin with).</p>
+          <p>Maybe check to see if the page name is typed correctly? Or otherwise, would you like to <a href="{{url_for('home')}}">go to the homepage?</a></p>
+        </section>
+	{% endblock %}
+</html>
