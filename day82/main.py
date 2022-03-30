@@ -51,13 +51,13 @@ def privacy_page():
 	return render_template("privacy.html", rn = dt.datetime.now())
 
 
-
-# test page
+"""
+# test page - not implemented here
 	
 @app.route('/testing')
 def testing_page(): 
 	return render_template("testing.html", rn = dt.datetime.now())
-
+"""
 
 
 if __name__ == "__main__":
