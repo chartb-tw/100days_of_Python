@@ -2,7 +2,7 @@ import fitz
 import requests
 import os
 
-saved_api_key = "AIzaSyB5Hty3AjEq-NLGGqTpEFelA2--VgMO7_g"
+saved_api_key = "YOUR KEY HERE"
 
 fname_given = input("Type the filename of the .pdf that you would like to convert: ")
 if fname_given[-4:]!=".pdf":
