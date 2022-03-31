@@ -4,3 +4,5 @@ This is a tkinter based GUI program that takes an image and a watermark, and app
 The watermark image is basically required to be black and (pure) white, with the areas of pure white being used to create the watermark. (Yes, I know there are limitations to that...)
 
 The app really could have been designed better too, but I was too lazy once again (besides, that's just reading the documentation!)
+
+(st, rpx)
