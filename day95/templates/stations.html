@@ -5,7 +5,7 @@
 	{% block content %}
 		<h1>Services at {{station_name}}</h1>
 		<p>These services were searched for at around {{rn.strftime("%H:%M:%S")}}.</p>
-		{% if services: %}
+		{% if services: %} {# if the station is found and there are no services to display, the API returns services as null/None #}
 		<h3>Trains found:</h3>
 		<table>
 			<thead>
