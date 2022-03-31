@@ -6,4 +6,4 @@ The code is mostly from that I created in days 62 (create a cafe site with data 
 
 (Looking back, I'm not entirely sure whether the site should have interfaced with the database directly as in my code here, or whether it was supposed to use an API created to interact with it. However, as I [already know how to use APIs for the most part](https://github.com/chartb-tw/100days_of_Python/tree/main/day95), I'm not going to sweat too much over it.)
 
-(t, rcx)
+(t, rcx/f)
