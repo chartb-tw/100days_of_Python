@@ -1,0 +1,67 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Restaurants{% endblock %}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('.static', filename='css/styles.css')}}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <h1>All Cafes</h1>
+      {% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<div>
+				{% for message in messages %}
+					<p>{{ message }}</p>
+				{% endfor %}
+			</div>
+			{% endif %}
+		{% endwith %}
+      {% if all_cafes: %}
+	  <table class="table">
+          
+          <tr>
+			<th>Name</th>
+			<th>Map link</th>
+			<th>Image</th>
+			<th>Location</th>
+			<th>Number of seats (approx)</th>
+			<th>Toilet available?</th>
+			<th>Wifi available?</th>
+			<th>Sockets available?</th>
+			<th>Can take calls?</th>
+			<th>Coffee price</th>
+			<th>Edit?</th>
+			<th>Delete?</th>
+          </tr>
+          {% for cafe in all_cafes: %}
+			  <tr>
+			  <td>{{cafe.name}}</td>
+			  <td><a href="{{cafe.map_url}}">{{cafe.map_url}}</a></td>
+			  <td><a href="{{cafe.img_url}}" alt="Image of {{cafe.name}}" title="Image of {{cafe.name}}"><img src="{{cafe.img_url}}" width="50"></a></td>
+			  <td>{{cafe.location}}</td>
+			  <td>{{cafe.seats}}</td>
+			  <td>{{"✓" if cafe.has_toilet else "✗"}}</td>
+			  <td>{{"✓" if cafe.has_wifi else "✗"}}</td>
+			  <td>{{"✓" if cafe.has_sockets else "✗"}}</td>
+			  <td>{{"✓" if cafe.can_take_calls else "✗"}}</td>
+			  <td>£{{cafe.coffee_price}}</td>
+			  <td><a href="{{url_for('edit_cafe', cafe_id = cafe.id)}}">Edit</a></td>
+			  <td><a href="{{url_for('delete_cafe', cafe_id = cafe.id)}}">Delete</a></td>
+			  </tr>
+          {% endfor %}
+  	  </table>
+  	  {% endif %}
+      <p><a href="{{url_for('add_cafe')}}">Add a new cafe</a> &#183; <a href="{{url_for('home')}}">Return to index page</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
