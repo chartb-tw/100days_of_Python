@@ -68,10 +68,10 @@ def add_cafe():
 		# print(form.data)
 		form_data = form.data.copy()
 		cafe_check = Cafe.query.filter_by(name = form_data["cafe_name"]).first() # the cafe name must be unique, so check if the name already appears
-		if cafe_check:
+		if cafe_check: # if a cafe with the name alrady exists, say so and take them to the cafes
 			flash(f"A cafe with the same name ({form_data['cafe_name']}) already exists. Check whether the cafe already is in the list, or otherwise modify the name with the location or a number?")
 			return redirect(url_for('cafes'))
-		else: # if not, then can add it with no worries
+		else: # if not, then (should be able to) add it with no worries
 			new_cafe = Cafe(name = form_data["cafe_name"], map_url = form_data["cafe_url"], img_url = form_data["img_url"], location = form_data["location"],
 				seats = form_data["seats"], has_toilet = form_data["has_toilet"], has_wifi = form_data["has_wifi"], has_sockets = form_data["has_sockets"],
 				can_take_calls = form_data["can_take_calls"], coffee_price = format(float(form_data["coffee_price"]), ".2f"))
@@ -91,30 +91,34 @@ def cafes():
 @app.route('/edit/<int:cafe_id>', methods = ["GET","POST"])
 def edit_cafe(cafe_id):
 	cafe_to_edit = Cafe.query.get(cafe_id)
-	edit_form = CafeForm(cafe_name = cafe_to_edit.name, cafe_url = cafe_to_edit.map_url, img_url = cafe_to_edit.img_url, location = cafe_to_edit.location, 
-							seats = cafe_to_edit.seats, has_toilet = cafe_to_edit.has_toilet, has_wifi = cafe_to_edit.has_wifi, has_sockets = cafe_to_edit.has_sockets,
-							can_take_calls = cafe_to_edit.can_take_calls, coffee_price = float(cafe_to_edit.coffee_price))
-	if edit_form.validate_on_submit():
-		form_data = edit_form.data
-		cafe_to_edit.name = form_data["cafe_name"] 
-		map_url = form_data["cafe_url"] 
-		cafe_to_edit.img_url = form_data["img_url"] 
-		cafe_to_edit.location = form_data["location"]
-		cafe_to_edit.seats = form_data["seats"]
-		cafe_to_edit.has_toilet = form_data["has_toilet"]
-		cafe_to_edit.has_wifi = form_data["has_wifi"]
-		cafe_to_edit.has_sockets = form_data["has_sockets"]
-		cafe_to_edit.can_take_calls = form_data["can_take_calls"]
-		cafe_to_edit.coffee_price = format(float(form_data["coffee_price"]), ".2f")
-		db.session.commit()
-		flash(f"Your cafe edit to \"{cafe_to_edit.name}\" has successfully been made.")
+	if cafe_to_edit: # if you find the cafe, edit it
+		edit_form = CafeForm(cafe_name = cafe_to_edit.name, cafe_url = cafe_to_edit.map_url, img_url = cafe_to_edit.img_url, location = cafe_to_edit.location, 
+								seats = cafe_to_edit.seats, has_toilet = cafe_to_edit.has_toilet, has_wifi = cafe_to_edit.has_wifi, has_sockets = cafe_to_edit.has_sockets,
+								can_take_calls = cafe_to_edit.can_take_calls, coffee_price = float(cafe_to_edit.coffee_price))
+		if edit_form.validate_on_submit():
+			form_data = edit_form.data
+			cafe_to_edit.name = form_data["cafe_name"] 
+			cafe_to_edit.map_url = form_data["cafe_url"] 
+			cafe_to_edit.img_url = form_data["img_url"] 
+			cafe_to_edit.location = form_data["location"]
+			cafe_to_edit.seats = form_data["seats"]
+			cafe_to_edit.has_toilet = form_data["has_toilet"]
+			cafe_to_edit.has_wifi = form_data["has_wifi"]
+			cafe_to_edit.has_sockets = form_data["has_sockets"]
+			cafe_to_edit.can_take_calls = form_data["can_take_calls"]
+			cafe_to_edit.coffee_price = format(float(form_data["coffee_price"]), ".2f")
+			db.session.commit()
+			flash(f"Your cafe edit to \"{cafe_to_edit.name}\" has successfully been made.")
+			return redirect(url_for('cafes'))
+		return render_template('add.html', form=edit_form, adding = False)
+	else: # otherwise say that it isn't there
+		flash("The requested cafe could not be found. It probably was deleted?")
 		return redirect(url_for('cafes'))
-	return render_template('add.html', form=edit_form, adding = False)
 
 @app.route('/delete/<int:cafe_id>', methods = ["GET","POST"])
 def delete_cafe(cafe_id):
 	cafe_to_delete = Cafe.query.get(cafe_id)
-	if cafe_to_delete:
+	if cafe_to_delete: # if you can find the cafe, prepare to delete it
 		cafe_del_name = cafe_to_delete.name
 		del_form = DeleteForm()
 		if del_form.validate_on_submit():
@@ -127,7 +131,7 @@ def delete_cafe(cafe_id):
 				flash("The key you provided was not correct. Please try again.")
 				return redirect(url_for('delete_cafe', cafe_id=cafe_id))
 		return render_template("delete.html", cafe= cafe_to_delete, form = del_form)
-	else:
+	else: # otherwise say that it isn't there
 		flash("The requested cafe could not be found. It probably was deleted already?")
 		return redirect(url_for('cafes'))
 
