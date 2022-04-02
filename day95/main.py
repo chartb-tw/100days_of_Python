@@ -15,8 +15,13 @@ def home():
 
 # location line up - docs at https://www.realtimetrains.co.uk/about/developer/pull/docs/locationlist/
 @app.route('/<string:train_loc>')
-def station_dep(train_loc): 
-	resp = requests.get(url = f"{endp}json/search/{train_loc}", auth = api_cred)
+def station_dep(train_loc):
+	rnow = dt.datetime.now()
+	return redirect(url_for('station_dep_dt', train_loc = train_loc, year = rnow.strftime("%Y"), month = rnow.strftime("%m"), day = rnow.strftime("%d"), time = rnow.strftime("%H%M")))
+
+@app.route('/<string:train_loc>/<year>/<month>/<day>/<time>')
+def station_dep_dt(train_loc, year, month, day, time):
+	resp = requests.get(url = f"{endp}json/search/{train_loc}/{year}/{month}/{day}/{time}", auth = api_cred)
 	resp.raise_for_status()
 	dep_services = resp.json()
 	return render_template("stations.html", rn = dt.datetime.now(), services = dep_services["services"], station_name = dep_services["location"]["name"])

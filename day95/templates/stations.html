@@ -4,8 +4,8 @@
 	{% block title %}Departures for {{station_name}}{% endblock %}
 	{% block content %}
 		<h1>Services at {{station_name}}</h1>
-		<p>These services were searched for at around {{rn.strftime("%H:%M:%S")}}.</p>
-		{% if services: %} {# if the station is found and there are no services to display, the API returns services as null (js)/None (Python equivalent) #}
+		<p>These services were searched for at around {{rn.strftime("%H:%M:%S")}} (date: {{rn.strftime("%d/%b/%Y")}}).</p>
+		{% if services: %} {# if the station is found and there are no services to display, the API returns services as null (js)/None (Python equivalent) - here if checks if the variable is not False, None or empty/zero-length #}
 		<h3>Trains found:</h3>
 		<table>
 			<thead>
@@ -31,7 +31,7 @@
 				{% endfor %}
 			</tbody>
 		</table>
-		{% else: %}
+		{% else %}
 			<p>No services have been found!</p>
 		{% endif %}
 	{% endblock %}
