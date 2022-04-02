@@ -5,7 +5,6 @@ import datetime as dt
 app = Flask(__name__)
 
 # 404 page
-@app.route('/error-404')
 @app.errorhandler(404)
 def not_found_page(e=404):
 	return render_template("error_404.html", rn = dt.datetime.now()), 404
