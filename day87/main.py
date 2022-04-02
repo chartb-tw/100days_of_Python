@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 Bootstrap(app)
 
-API_KEY = "lolYouNeek"
+API_KEY = "something_easy"
 
 class CafeForm(FlaskForm):
 	cafe_name = wtfields.StringField('Cafe name', validators=[DataRequired()])
