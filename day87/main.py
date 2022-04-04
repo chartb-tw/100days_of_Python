@@ -4,7 +4,6 @@ from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, NumberRange
 import wtforms.fields as wtfields
 from flask_sqlalchemy import SQLAlchemy
-#import csv
 #import datetime as dt
 
 app = Flask(__name__)
@@ -137,9 +136,3 @@ def delete_cafe(cafe_id):
 
 if __name__ == '__main__':
 	app.run(debug=True)
-
-"""
-with open('cafe-data.csv', newline='', mode="a") as file:
-	writer = csv.DictWriter(csvfile)
-	writer.writerow()
-"""
