@@ -24,7 +24,7 @@ class CafeForm(FlaskForm):
 	has_wifi = wtfields.BooleanField("WiFi available?") 
 	has_sockets = wtfields.BooleanField("Power sockets avaiable?")
 	can_take_calls = wtfields.BooleanField("Can take calls?")
-	coffee_price = wtfields.DecimalField('Coffee price', validators=[DataRequired(), NumberRange(min=0)]) # ... we could be cheeky and allow negative prices - make them pay you to drink coffee! But here I'm being good
+	coffee_price = wtfields.DecimalField('Coffee price', validators=[NumberRange(min=0)]) # ... we could be cheeky and allow negative prices - make them pay you to drink coffee! But here I'm being good
 	submit = wtfields.SubmitField('Submit')
 
 class DeleteForm(FlaskForm):
