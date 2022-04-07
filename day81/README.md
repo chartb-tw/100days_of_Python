@@ -6,6 +6,6 @@ This is broken into two parts:
 
 Of course, this nicely paid out by giving me [another day's project](https://github.com/chartb-tw/100days_of_Python/tree/main/day92) for "damn near free"! (If you know that reference, you're a legend btw)
 
-Run the program [from here](https://replit.com/@chartb/100daysofPythonday81) to test it out!
+Run the program [from here](https://replit.com/@chartb/day81program) to test it out!
 
 (s, f)
