@@ -6,4 +6,4 @@ This was made as a "quick and easy" solution for the day 95 exercise of the cour
 
 Hopefully it serves as an example of how to use APIs and the responses that are gained from them! (The site of course is not designed for any true production use whatsoever, just a bit of fun!)
 
-(s, rc)
+(s, f)
