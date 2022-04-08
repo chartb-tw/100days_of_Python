@@ -28,3 +28,56 @@ a:active {
 a:visited {
   color: pink;
 }
+
+/* 
+The site basic design is broken into the navbar, the content, and the footbar.
+These are ids and should appear on each page
+*/
+
+#navbar {
+  overflow: hidden;
+  background-color: #218009;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 10px;
+}
+
+#navbar a:hover {
+  background-color: #3ee714;
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  color: #eeeeee;
+  text-align: center;
+  padding: 15px 18px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.active {
+  background-color: #93b82e;
+}
+
+#main-content {
+  padding: 60px 10px;
+}
+
+#main-footer {
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #218009;
+  padding: 0 10px;
+  color: white;
+  text-align: center;
+}
+
+#main-footer a:visited {
+  color: silver;
+}
