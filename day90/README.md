@@ -8,4 +8,4 @@ There is a way to do it without using an API (notably the gtts module), however 
 I ended up using Google's API in the end, along with some documentation reading to figure out how to create the .mp3 file from the response given. The .pdf was parsed using the fitz module.
 Of course, by reading the notebook (and my inane ramblings to myself, as per these READMEs) you'll realise that things can change and a package that worked in the past may not be suitable these days!
 
-(s, rr)
+(s, rrx)
