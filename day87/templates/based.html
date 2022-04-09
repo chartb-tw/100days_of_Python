@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+		<link rel="icon" href="{{url_for('static', filename='hot-beverage.png')}}">
+	</head>
+	<body>
+      <nav id="navbar">
+		  {% block navbar %}
+          <a href="{{url_for('home')}}">Home</a>
+          <a href="{{url_for('cafes')}}">See all cafes</a>
+          <a href="{{url_for('add_cafe')}}">Add new cafe</a>
+          {% endblock %}
+      </nav>
+
+      <div id="main-content">
+          {% block content %}
+          {% endblock %} 
+      </div>
+
+      <footer id="main-footer">
+		  {% block footer %}
+          <p>chartb productions {{rn.year}} &#183; Demonstration purposes</p>
+          {% endblock %}
+      </footer>
+	</body>
+</html>

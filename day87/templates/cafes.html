@@ -1,17 +1,11 @@
-{% extends 'bootstrap/base.html' %}
+{% extends 'based.html' %}
 
-{% block title %}Restaurants{% endblock %}
-{% block styles %}
-{{super()}}
-<link rel="stylesheet"
-      href="{{url_for('.static', filename='css/styles.css')}}">
-{% endblock %}
+{% block title %}Cafe list{% endblock %}
 
 {% block content %}
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-12">
 
       <h1>All Cafes</h1>
       {% with messages = get_flashed_messages() %}
@@ -24,8 +18,7 @@
 			{% endif %}
 		{% endwith %}
       {% if all_cafes: %}
-	  <table class="table">
-          
+	  <table>
           <tr>
 			<th>Name</th>
 			<th>Map link</th>
@@ -57,10 +50,11 @@
 			  </tr>
           {% endfor %}
   	  </table>
+  	  {% else: %}
+  	  <p>We currently have no cafes in our database. Be the change you want to see in the world, would you like to <a href="{{url_for('add_cafe')}}">add one</a>?</p>
   	  {% endif %}
-      <p><a href="{{url_for('add_cafe')}}">Add a new cafe</a> &#183; <a href="{{url_for('home')}}">Return to index page</a></p>
+      <p class="space-above"><a href="{{url_for('add_cafe')}}">Add a new cafe</a> &#183; <a href="{{url_for('home')}}">Return to index page</a></p>
 
-    </div>
   </div>
 </div>
 

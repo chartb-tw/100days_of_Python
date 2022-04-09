@@ -4,7 +4,7 @@ from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, NumberRange
 import wtforms.fields as wtfields
 from flask_sqlalchemy import SQLAlchemy
-#import datetime as dt
+import datetime as dt
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
@@ -57,7 +57,7 @@ class Cafe(db.Model):
 # all Flask routes below
 @app.route("/")
 def home():
-	return render_template("index.html")
+	return render_template("index.html", rn = dt.datetime.now())
 
 
 @app.route('/add', methods = ["GET","POST"])
@@ -78,14 +78,14 @@ def add_cafe():
 			db.session.commit()
 			flash(f"Your cafe \"{form_data['cafe_name']}\" has been added!")
 			return redirect(url_for('cafes'))		
-	return render_template('add.html', form=form, adding = True)
+	return render_template('add.html', form=form, cafeid = None, rn = dt.datetime.now())
 
 
 
 @app.route('/cafes')
 def cafes():
 	all_the_cafes = db.session.query(Cafe).all()
-	return render_template('cafes.html', all_cafes = all_the_cafes)
+	return render_template('cafes.html', all_cafes = all_the_cafes, rn = dt.datetime.now())
 
 @app.route('/edit/<int:cafe_id>', methods = ["GET","POST"])
 def edit_cafe(cafe_id):
@@ -109,7 +109,7 @@ def edit_cafe(cafe_id):
 			db.session.commit()
 			flash(f"Your cafe edit to \"{cafe_to_edit.name}\" has successfully been made.")
 			return redirect(url_for('cafes'))
-		return render_template('add.html', form=edit_form, adding = False)
+		return render_template('add.html', form=edit_form, cafeid = cafe_id, rn = dt.datetime.now())
 	else: # otherwise say that it isn't there
 		flash("The requested cafe could not be found. It probably was deleted?")
 		return redirect(url_for('cafes'))
@@ -129,10 +129,11 @@ def delete_cafe(cafe_id):
 			else:
 				flash("The key you provided was not correct. Please try again.")
 				return redirect(url_for('delete_cafe', cafe_id=cafe_id))
-		return render_template("delete.html", cafe= cafe_to_delete, form = del_form)
+		return render_template("delete.html", cafe= cafe_to_delete, form = del_form, rn = dt.datetime.now())
 	else: # otherwise say that it isn't there
 		flash("The requested cafe could not be found. It probably was deleted already?")
 		return redirect(url_for('cafes'))
 
 if __name__ == '__main__':
 	app.run(debug=True)
+

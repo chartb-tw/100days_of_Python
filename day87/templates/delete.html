@@ -1,24 +1,18 @@
-{% extends 'bootstrap/base.html' %}
+{% extends 'based.html' %}
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block title %}Delete Cafe{% endblock %}
-{% block styles %}
-{{super()}}
-<link rel="stylesheet"
-      href="{{url_for('.static', filename='css/styles.css')}}">
-{% endblock %}
 
 {% block content %}
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 col-md-8">
 
       <h1>Delete a cafe</h1>
       {% with messages = get_flashed_messages() %}
 			{% if messages %}
 			<div>
 				{% for message in messages %}
-					<p>{{ message }}</p>
+					<p style="color:red;">{{ message }}</p>
 				{% endfor %}
 			</div>
 			{% endif %}
@@ -28,15 +22,18 @@
       <ol>
 		<li>Name: {{cafe.name}}</li>
 		<li>Location: {{cafe.location}}</li>
+		<li>Location: <a href="{{cafe.map_url}}">{{cafe.map_url}}</a></li>
+		<li>Image: <a href="{{cafe.img_url}}" alt="Image of {{cafe.name}}" title="Image of {{cafe.name}}"><img src="{{cafe.img_url}}" width="50"></a></li>
       </ol>
       Please check the details. If you are sure you want to delete the cafe, then please provide the delete key below:
       </p>
       <!-- This is where your WTForm will go -->
       {{ wtf.quick_form(form) }}
-
+	  
+	  <a href="{{url_for('edit_cafe', cafe_id = cafe.id)}}">Edit this cafe</a>
+		
 	  <p class="space-above"><a href="{{url_for('cafes')}}">See all cafes</a> &#183; <a href="{{url_for('home')}}">Return to index page</a></p>
 
-    </div>
   </div>
 </div>
 
