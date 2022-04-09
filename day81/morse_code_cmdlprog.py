@@ -3,7 +3,6 @@
 #
 #  morse_code_cmdlprog.py
 #  
-#  Copyright 2022 charles <charles@MacBook-Air>
 #  
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
