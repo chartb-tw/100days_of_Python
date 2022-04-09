@@ -5,7 +5,6 @@
 {% block content %}
 
 <div class="container">
-  <div class="row">
 
       <h1>All Cafes</h1>
       {% with messages = get_flashed_messages() %}
@@ -53,9 +52,9 @@
   	  {% else: %}
   	  <p>We currently have no cafes in our database. Be the change you want to see in the world, would you like to <a href="{{url_for('add_cafe')}}">add one</a>?</p>
   	  {% endif %}
-      <p class="space-above"><a href="{{url_for('add_cafe')}}">Add a new cafe</a> &#183; <a href="{{url_for('home')}}">Return to index page</a></p>
+      <p><a href="{{url_for('add_cafe')}}">Add a new cafe</a> &#183; <a href="{{url_for('home')}}">Return to index page</a></p>
 
-  </div>
+
 </div>
 
 {% endblock %}
