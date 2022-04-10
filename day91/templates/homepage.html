@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+
+	{% extends "based.html" %}
+	{% import "bootstrap/wtf.html" as wtf %}
+	
+	{% block title %}Photo color harvester{% endblock %} 
+	{% block content %}
+	
+	{% if embedImg or col_list: %}
+	<h1>Colors in your image:</h1>
+	  {% if embedImg: %}
+      <p>Your image ({{embedImg}}):</p>
+      <img src="{{url_for('static', filename=('uploads/' + embedImg) )}}" alt="Your uploaded image" style="width: 50%; height: auto;">
+      {% endif %}
+      
+      {% if col_list: %}
+      <h3>Colours found:</h3>
+      <p>Out of the {{tot_pixels}} pixels in your image, the most popular ten we found were:</p>
+      <ol>
+		{% for col in col_list: %}
+		<li><span style="background-color:{{col[0]}};">...</span> {{col[0]}} (appears {{col[1]}} time(s)) </li>
+		{% endfor %}
+      </ol>
+      {% else: %}
+      <p>We haven't found any colors unfortunartely...</p>
+      {% endif %}
+	Would you like to upload another image?
+	{% else: %}
+	  <h1>Photo color harvester</h1>
+      <p>See the most popular colors in your image here:</p>
+	{% endif %}
+      
+      
+		{{ wtf.quick_form(form) }}
+
+  	{% endblock %}
+
+</html>

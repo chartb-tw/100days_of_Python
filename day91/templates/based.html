@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+		{% block favicon %}<link rel="icon" href="{{url_for('static', filename='artist-palette.png')}}">{% endblock %}
+	</head>
+	<body>
+      <nav id="navbar">
+		  {% block navbar %}
+          <a href="{{url_for('home')}}">Home</a>
+          {% endblock %}
+      </nav>
+
+      <div id="main-content">
+          {% block content %}<h1>hello</h1>{% endblock %} 
+      </div>
+
+      <footer id="main-footer">
+		  {% block footer %}
+          <p>chartb productions {{rn.year}} &#183; Demo site</p>
+          {% endblock %}
+      </footer>
+	</body>
+</html>
