@@ -5,6 +5,7 @@
 
 {% block content %}
 <div class="container">
+  <div class="row">
 
       <h1>Delete a cafe</h1>
       {% with messages = get_flashed_messages() %}
@@ -33,6 +34,7 @@
 		
 	  <p class="space-above"><a href="{{url_for('cafes')}}">See all cafes</a> &#183; <a href="{{url_for('home')}}">Return to index page</a></p>
 
+  </div>
 </div>
 
 {% endblock %}

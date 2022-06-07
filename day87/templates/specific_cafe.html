@@ -1,0 +1,27 @@
+{% extends 'based.html' %}
+
+{% block title %}{{cafe_to_show.name}}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+
+      <h1>{{cafe_to_show.name}} - cafe details</h1>
+      <img src='{{cafe_to_show.img_url}}'>
+      <ul>
+		  <li>Location: <a href='{{cafe_to_show.map_url}}'>{{cafe_to_show.map_url}}</a> ({{cafe_to_show.location}})</li>
+		  <li>Seats: {{cafe_to_show.seats}}</li>
+		  <li>Coffee price: £{{cafe_to_show.coffee_price}}</li>
+		  <li>Toilets available: {{'Yes' if cafe_to_show.has_toilet else 'No'}}</li>
+		  <li>Wi-Fi available: {{'Yes' if cafe_to_show.has_wifi else 'No'}}</li>
+		  <li>Sockets available: {{'Yes' if cafe_to_show.has_sockets else 'No'}}</li>
+		  <li>Can take calls: {{'Yes' if cafe_to_show.can_take_calls else 'No'}}</li>
+      </ul>
+      
+      <p class="space-above"><a href="{{url_for('edit_cafe', cafe_id=cafe_to_show.id)}}">Edit this cafe</a> &#183; <a href="{{url_for('delete_cafe', cafe_id = cafe_to_show.id)}}">Delete this cafe</a> &#183; <a href="{{url_for('home')}}">Return to index page</a></p>
+
+  </div>
+</div>
+
+{% endblock %}

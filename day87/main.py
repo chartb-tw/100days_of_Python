@@ -4,13 +4,14 @@ from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, NumberRange
 import wtforms.fields as wtfields
 from flask_sqlalchemy import SQLAlchemy
+#import csv
 import datetime as dt
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 Bootstrap(app)
 
-API_KEY = "something_easy"
+API_KEY = "lolYouNeek"
 
 class CafeForm(FlaskForm):
 	cafe_name = wtfields.StringField('Cafe name', validators=[DataRequired()])
@@ -86,6 +87,16 @@ def add_cafe():
 def cafes():
 	all_the_cafes = db.session.query(Cafe).all()
 	return render_template('cafes.html', all_cafes = all_the_cafes, rn = dt.datetime.now())
+
+@app.route('/cafes/<int:cafe_id>')
+def given_cafe(cafe_id):
+	cafe_to_show = Cafe.query.get(cafe_id)
+	if cafe_to_show:	
+		return render_template('specific_cafe.html', cafe_to_show = cafe_to_show, rn = dt.datetime.now())
+	else: # otherwise say that it isn't there
+		flash("The requested cafe could not be found. It probably was deleted already?")
+		return redirect(url_for('cafes'))
+		
 
 @app.route('/edit/<int:cafe_id>', methods = ["GET","POST"])
 def edit_cafe(cafe_id):
