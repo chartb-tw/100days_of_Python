@@ -56,6 +56,11 @@ class Cafe(db.Model):
 
 
 # all Flask routes below
+
+@app.errorhandler(404)
+def not_found_page(e):
+	return render_template("error_404.html", rn = dt.datetime.now()), 404
+
 @app.route("/")
 def home():
 	return render_template("index.html", rn = dt.datetime.now())
