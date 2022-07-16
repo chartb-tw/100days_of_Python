@@ -1,0 +1,36 @@
+{% extends "based.html" %}
+
+  {% block title %}Page Not Found - Laura Bootstrap Template{% endblock %}
+
+{% block content %}
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>404 - Page Not Found</h2>
+          <ol>
+            <li><a href="{{url_for('home')}}">Home</a></li>
+            <li>404 Page</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page">
+      <div class="container">
+        <p>
+          The page you requested could not be found. Please check that the address is correct - otherwise we may have removed the page.
+          
+          <br />
+          <a href="{{url_for('home')}}">To Homepage</a>
+        </p>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+{% endblock %}

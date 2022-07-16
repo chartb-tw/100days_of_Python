@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
-from wtforms.validators import DataRequired, NumberRange
+from wtforms.validators import DataRequired, NumberRange, URL
 import wtforms.fields as wtfields
 from flask_sqlalchemy import SQLAlchemy
 #import csv
@@ -15,8 +15,8 @@ API_KEY = "lolYouNeek"
 
 class CafeForm(FlaskForm):
 	cafe_name = wtfields.StringField('Cafe name', validators=[DataRequired()])
-	cafe_url = wtfields.URLField("Cafe location on maps (URL)", validators=[DataRequired()])
-	img_url = wtfields.URLField("Image link (URL)", validators=[DataRequired()])
+	cafe_url = wtfields.URLField("Cafe location on maps (URL)", validators=[DataRequired(), URL()])
+	img_url = wtfields.URLField("Image link (URL)", validators=[DataRequired(), URL()])
 	location = wtfields.StringField('Location', validators=[DataRequired()])
 	#seats = wtfields.IntegerField("Seats", validators=[DataRequired(), NumberRange(min=0)])
 	seats = wtfields.SelectField('Number of seats', choices=['0-10', '10-20', '20-30', '30-40', '40-50', '50+']) # SelectFields cam take (value,label) pairs, or values which will also be used as labels
